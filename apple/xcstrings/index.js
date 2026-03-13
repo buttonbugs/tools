@@ -19,19 +19,17 @@ var language_list = []
 var language_translated_count_list = []
 var google_translate_url = google_translate_p1 + "auto" + google_translate_p2 + "en" + google_translate_p3
 
-function language_from_change(event) {
-    if (event) {    // event == true means triggered by user
-        /* Regenerate original_list_element.value */
-        // Clear
-        original_list_element.value = ""
-        if (language_from_select.value == original_xcstrings["sourceLanguage"]) {
-            for (const key of key_list_for_translation) {
-                original_list_element.value += key + line_divider
-            }
-        } else {
-            for (const key of key_list_for_translation) {
-                original_list_element.value += original_xcstrings["strings"][key]["localizations"][language_from_select.value]["stringUnit"]["value"] + line_divider
-            }
+function language_from_change() {
+    /* Regenerate original_list_element.value */
+    // Clear
+    original_list_element.value = ""
+    if (language_from_select.value == original_xcstrings["sourceLanguage"]) {
+        for (const key of key_list_for_translation) {
+            original_list_element.value += key + line_divider
+        }
+    } else {
+        for (const key of key_list_for_translation) {
+            original_list_element.value += original_xcstrings["strings"][key]["localizations"][language_from_select.value]["stringUnit"]["value"] + line_divider
         }
     }
     google_translate_url = google_translate_p1
@@ -145,7 +143,8 @@ function render() {
     output_result();
 }
 
-function load_translated_list() {
+function load_translated_list(event) {
+    event.target.disabled = true
     const translated_text = document.getElementById("translated_list").value
 
     // Split
@@ -168,15 +167,22 @@ function load_translated_list() {
                 original_xcstrings["strings"][key]["localizations"][language_to_select.value] = language_object
             }
         }
+        document.getElementById("translated_list").value = ""
         render();
     } else {
-        alert("Length does not match!")
+        alert(
+            "String count does not match!\nExpected: "
+            + key_list_for_translation.length
+            + "\nGiven: "
+            + translated_text_list.length
+        )
     }
 }
 
 
 
 document.getElementById("btn_original_xcstrings").onclick = () => {
+    document.getElementById("btn_translated_list").disabled = true
     original_xcstrings = JSON.parse(document.getElementById("original_xcstrings").value)
     console.log(original_xcstrings);
 
@@ -203,6 +209,7 @@ document.getElementById("btn_original_xcstrings").onclick = () => {
 }
 
 document.getElementById("btn_google_translate").onclick = () => {
+    document.getElementById("btn_translated_list").disabled = false
     window.open(google_translate_url);
 }
 

@@ -1,2 +1,38 @@
-<textarea id="original_xcstrings" placeholder="original_xcstrings"></textarea>
-<textarea id="output_xcstrings" placeholder="output_xcstrings"></textarea>
+<html>
+    <head>
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <textarea id="original_xcstrings" placeholder="Paste the original xcstrings"></textarea>
+        <textarea id="original_list" placeholder="Copy the original word list"></textarea>
+
+        <br><br>
+
+        <button id="btn_original_xcstrings">Load original xcstrings</button>
+        <button id="btn_translated_list">Load translated word list</button>
+        <button id="btn_google_translate">Open Google Translate</button>
+        
+        <br><br>
+
+        <label for="language_from_select">Translate from Language:</label>
+        <select id="language_from_select"></select>
+
+        <label for="language_to_select">Translate to Language:</label>
+        <select id="language_to_select"></select>
+        
+        <br><br>
+
+        <textarea id="translated_list" placeholder="Paste the translated word list"></textarea>
+        <textarea id="translated_xcstrings" placeholder="Copy the translated xcstrings"></textarea>
+        
+        <br><br>
+
+        <span>Legend: </span>
+        <span class="new">NEW </span>
+        <span class="translated">TRANSLATED </span>
+        <span class="needs_review">NEEDS REVIEW </span>
+        <br>
+        <table id="table"></table>
+    </body>
+    <script src="index.js"></script>
+</html>

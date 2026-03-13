@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+th {
+    width: 70px;
+    padding-bottom: 1px;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: white;
+    box-shadow: 0 4px 8px -4px #8882;
+}
+th, td {
+    border-bottom: 1px solid #8882;
+    border-collapse: collapse;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+td:hover {
+    overflow: visible;
+    background: white;
+    z-index: 2;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+/* status style */
+.new {
+    color: blue;
+}
+.translated {
+    color: green;
+}
+.needs_review {
+    color: orange;
+}
